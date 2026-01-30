@@ -1,4 +1,4 @@
-"""Módulo principal da API Aruma.
+"""Módulo principal da Fast API.
 
 Este módulo contém a configuração principal da aplicação FastAPI
 e as rotas da API.
@@ -9,11 +9,11 @@ from http import HTTPStatus
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, JSONResponse
 
-from aruma_api.schemas import Message
+from fast_api.schemas import Message
 
 app = FastAPI(
-    title='Aruma API',
-    description='API do projeto Aruma',
+    title='Fast API',
+    description='API desenvolvida com FastAPI',
     version='0.1.0',
 )
 
@@ -29,6 +29,7 @@ def read_root() -> JSONResponse:
     """Retorna uma mensagem de boas-vindas."""
     # return Message(message='Hello, World!')
     return {'message': 'Hello, World!'}
+
 
 # Rota HTML (Exercício 2)
 @app.get(
