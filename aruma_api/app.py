@@ -4,7 +4,12 @@ Este módulo contém a configuração principal da aplicação FastAPI
 e as rotas da API.
 """
 
+from http import HTTPStatus
+
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse, JSONResponse
+
+from aruma_api.schemas import Message
 
 app = FastAPI(
     title='Aruma API',
@@ -13,11 +18,34 @@ app = FastAPI(
 )
 
 
-@app.get('/')
-def read_root() -> dict[str, str]:
-    """Retorna uma mensagem de boas-vindas.
-
-    Returns:
-        dict[str, str]: Dicionário com a mensagem de boas-vindas.
-    """
+# Rota raiz da API
+@app.get(
+    '/',
+    status_code=HTTPStatus.OK,
+    response_class=JSONResponse,
+    response_model=Message,
+)
+def read_root() -> JSONResponse:
+    """Retorna uma mensagem de boas-vindas."""
+    # return Message(message='Hello, World!')
     return {'message': 'Hello, World!'}
+
+# Rota HTML (Exercício 2)
+@app.get(
+    '/html',
+    status_code=HTTPStatus.OK,
+    response_class=HTMLResponse,
+)
+def read_html() -> HTMLResponse:
+    """Retorna uma página HTML."""
+    return HTMLResponse(
+        content="""
+        <html>
+            <head>
+                <title>Nosso olá mundo!</title>
+            </head>
+            <body>
+                <h1> Olá Mundo </h1>
+            </body>
+        </html>"""
+    )
