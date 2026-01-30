@@ -65,7 +65,8 @@ def read_users() -> UserList:
     response_model=UserPublic,
     responses={404: {'model': ErrorDetail}},
 )
-def read_user_id(user_id: int) -> UserList:
+def read_user_id(user_id: int) -> UserPublic:
+    """Retorna um usuário pelo id."""
     if user_id < 1 or user_id > len(database):
         raise HTTPException(
             status_code=HTTPStatus.NOT_FOUND,
