@@ -1,5 +1,5 @@
 [project]
-name = "aruma-api"
+name = "fast-api"
 version = "0.1.0"
 description = ""
 authors = [
@@ -46,7 +46,7 @@ addopts = '-p no:warnings'
 lint = 'ruff check'
 pre_format = 'ruff check --fix'
 format = 'ruff format'
-run = 'fastapi dev aruma_api/app.py'
+run = 'fastapi dev fast_api/app.py'
 pre_test = 'task lint'
-test = 'pytest -s -x --cov=aruma_api -vv'
+test = 'pytest -s -x --cov=fast_api -vv'
 post_test = 'coverage html'
