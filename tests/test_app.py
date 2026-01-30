@@ -1,10 +1,10 @@
-"""Testes para o módulo principal da API Aruma."""
+"""Testes para o módulo principal da Fast API."""
 
 from http import HTTPStatus
 
 from fastapi.testclient import TestClient
 
-from aruma_api.app import app
+from fast_api.app import app
 
 
 def test_read_root_deve_retornar_ok() -> None:
@@ -49,5 +49,5 @@ def test_read_html_deve_retornar_html() -> None:
     client = TestClient(app)
     response = client.get('/html')
     assert response.headers['Content-Type'] == 'text/html; charset=utf-8'
-    assert "<h1> Olá Mundo </h1>" in response.text
-    assert "<title>Nosso olá mundo!</title>" in response.text
+    assert '<h1> Olá Mundo </h1>' in response.text
+    assert '<title>Nosso olá mundo!</title>' in response.text
