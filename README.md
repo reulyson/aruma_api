@@ -42,6 +42,16 @@ poetry env use 3.13
 poetry install
 ```
 
+## Rotas da API
+
+| Método | Rota   | Descrição                    | Resposta        |
+|--------|--------|------------------------------|-----------------|
+| GET    | `/`    | Mensagem de boas-vindas      | JSON            |
+| GET    | `/html`| Página HTML "Olá Mundo"      | HTML            |
+
+- **GET /** — Retorna `{"message": "Hello, World!"}` (Content-Type: application/json).
+- **GET /html** — Retorna uma página HTML com título "Nosso olá mundo!" e `<h1>Olá Mundo</h1>`.
+
 ## Como Usar
 
 ### Ativar o ambiente virtual
@@ -84,8 +94,10 @@ A API estará disponível em: http://127.0.0.1:8000
 aruma_api/
 ├── aruma_api/
 │   ├── __init__.py
-│   └── app.py          # Aplicação principal
+│   ├── app.py          # Aplicação principal e rotas
+│   └── schemas.py      # Modelos Pydantic (ex.: Message)
 ├── tests/
+│   ├── __init__.py
 │   └── test_app.py     # Testes da aplicação
 ├── pyproject.toml      # Configurações do projeto
 ├── poetry.lock         # Lock das dependências
