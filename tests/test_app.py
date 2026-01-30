@@ -35,3 +35,19 @@ def test_read_root_deve_retornar_mensagem_hello_world() -> None:
 
     # Assert
     assert response.json() == {'message': 'Hello, World!'}
+
+
+def test_read_html_deve_retornar_ok() -> None:
+    """Testa se a rota HTML retorna status 200 OK."""
+    client = TestClient(app)
+    response = client.get('/html')
+    assert response.status_code == HTTPStatus.OK
+
+
+def test_read_html_deve_retornar_html() -> None:
+    """Testa se a rota HTML retorna HTML."""
+    client = TestClient(app)
+    response = client.get('/html')
+    assert response.headers['Content-Type'] == 'text/html; charset=utf-8'
+    assert "<h1> Olá Mundo </h1>" in response.text
+    assert "<title>Nosso olá mundo!</title>" in response.text
