@@ -133,6 +133,7 @@ def test_read_user_id(client) -> None:
 
 
 def test_read_user_id_error(client) -> None:
+    """Testa se a rota retorna 404 para usuário inexistente."""
     response = client.get('/users/2')
 
     assert response.status_code == HTTPStatus.NOT_FOUND
