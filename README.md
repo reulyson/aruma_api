@@ -4,7 +4,7 @@ API REST desenvolvida com FastAPI.
 
 ## Descrição
 
-Este projeto é uma API moderna e de alta performance construída com FastAPI, seguindo as melhores práticas de desenvolvimento Python (PEP-8, PEP-257, PEP-484).
+Este projeto é uma API moderna e de alta performance construída com **FastAPI**, seguindo as melhores práticas de desenvolvimento Python (PEP-8, PEP-257, PEP-484). Oferece um CRUD de usuários em memória e documentação OpenAPI automática.
 
 ## Pré-requisitos
 
@@ -32,7 +32,7 @@ pipx inject poetry poetry-plugin-shell
 
 ```bash
 git clone <url-do-repositorio>
-cd aruma_api
+cd fast_api
 ```
 
 ### 4. Configurar o ambiente
@@ -44,13 +44,21 @@ poetry install
 
 ## Rotas da API
 
-| Método | Rota   | Descrição                    | Resposta        |
-|--------|--------|------------------------------|-----------------|
-| GET    | `/`    | Mensagem de boas-vindas      | JSON            |
-| GET    | `/html`| Página HTML "Olá Mundo"      | HTML            |
+| Método   | Rota           | Descrição                    | Resposta   |
+|----------|----------------|------------------------------|------------|
+| GET      | `/`            | Mensagem de boas-vindas      | JSON       |
+| POST     | `/users/`      | Cria um usuário               | 201 + JSON |
+| GET      | `/users/`      | Lista todos os usuários       | JSON       |
+| GET      | `/users/{id}`  | Retorna um usuário pelo id    | JSON / 404 |
+| PUT      | `/users/{id}`  | Atualiza um usuário pelo id   | JSON / 404 |
+| DELETE   | `/users/{id}`  | Remove um usuário pelo id     | JSON / 404 |
 
-- **GET /** — Retorna `{"message": "Hello, World!"}` (Content-Type: application/json).
-- **GET /html** — Retorna uma página HTML com título "Nosso olá mundo!" e `<h1>Olá Mundo</h1>`.
+- **GET /** — Retorna `{"message": "Hello, World!"}`.
+- **POST /users/** — Body: `username`, `email`, `password`. Retorna o usuário criado (sem senha).
+- **GET /users/** — Retorna `{"users": [...]}`.
+- **GET /users/{user_id}** — Retorna o usuário ou 404.
+- **PUT /users/{user_id}** — Body: `username`, `email`, `password`. Retorna o usuário atualizado ou 404.
+- **DELETE /users/{user_id}** — Retorna o usuário removido ou 404.
 
 ## Como Usar
 
@@ -72,7 +80,7 @@ Ou diretamente:
 fastapi dev fast_api/app.py
 ```
 
-A API estará disponível em: http://127.0.0.1:8000
+A API estará disponível em: **http://127.0.0.1:8000**
 
 ### Documentação interativa
 
@@ -81,41 +89,41 @@ A API estará disponível em: http://127.0.0.1:8000
 
 ## Comandos Disponíveis (Taskipy)
 
-| Comando | Descrição |
-|---------|-----------|
-| `task run` | Inicia o servidor de desenvolvimento |
-| `task lint` | Verifica o código com ruff |
-| `task format` | Formata o código com ruff |
-| `task test` | Executa os testes com cobertura |
+| Comando       | Descrição                          |
+|---------------|------------------------------------|
+| `task run`    | Inicia o servidor de desenvolvimento |
+| `task lint`   | Verifica o código com Ruff         |
+| `task format` | Formata o código com Ruff          |
+| `task test`   | Executa os testes com cobertura    |
 
 ## Estrutura do Projeto
 
 ```
-fast-api/
+fast_api/
 ├── fast_api/
 │   ├── __init__.py
 │   ├── app.py          # Aplicação principal e rotas
-│   └── schemas.py      # Modelos Pydantic (ex.: Message)
+│   └── schemas.py      # Modelos Pydantic (Message, UserSchema, UserPublic, UserList, ErrorDetail)
 ├── tests/
-│   ├── __init__.py
+│   ├── conftest.py     # Fixtures (cliente de teste)
 │   └── test_app.py     # Testes da aplicação
-├── pyproject.toml      # Configurações do projeto
-├── poetry.lock         # Lock das dependências
+├── pyproject.toml     # Configurações do projeto
+├── poetry.lock        # Lock das dependências
 └── README.md
 ```
 
 ## Ferramentas de Desenvolvimento
 
-- **ruff**: Linter e formatador de código (PEP-8)
+- **Ruff**: Linter e formatador de código (PEP-8, linha ≤ 79 caracteres, aspas simples)
 - **pytest**: Framework de testes
 - **pytest-cov**: Cobertura de testes
-- **taskipy**: Automação de tarefas
+- **taskipy**: Automação de tarefas (lint, format, test, run)
 
 ## Como Contribuir
 
 1. Faça um fork do projeto
 2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Faça commit das suas alterações (`git commit -m 'Adiciona nova feature'`)
+3. Faça commit das suas alterações (`git commit -m 'feat: adiciona nova feature'`)
 4. Faça push para a branch (`git push origin feature/nova-feature`)
 5. Abra um Pull Request
 
