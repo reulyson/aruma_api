@@ -1,6 +1,6 @@
-# Aruma API
+# Fast API
 
-API REST desenvolvida com FastAPI para o projeto Aruma.
+API REST desenvolvida com FastAPI.
 
 ## Descrição
 
@@ -69,7 +69,7 @@ task run
 Ou diretamente:
 
 ```bash
-fastapi dev aruma_api/app.py
+fastapi dev fast_api/app.py
 ```
 
 A API estará disponível em: http://127.0.0.1:8000
@@ -91,8 +91,8 @@ A API estará disponível em: http://127.0.0.1:8000
 ## Estrutura do Projeto
 
 ```
-aruma_api/
-├── aruma_api/
+fast-api/
+├── fast_api/
 │   ├── __init__.py
 │   ├── app.py          # Aplicação principal e rotas
 │   └── schemas.py      # Modelos Pydantic (ex.: Message)
